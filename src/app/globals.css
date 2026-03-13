@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+/* ── Brand Colour Tokens ── */
+:root {
+  /* Light mode: Muted Dusty Rose */
+  --brand-primary:   #d482a0;   /* dusty rose */
+  --brand-accent:    #a77b8d;   /* muted mauve */
+  --brand-soft:      #fff0f3;   /* soft blush surface */
+  --brand-muted:     #f8e1e7;   /* very light pink */
+  --bg-base:         #fffafb;   /* clean soft white */
+  --text-base:       #4a2c3a;   /* charcoal rose */
+  --text-muted:      #8a6d7a;   /* grayish rose */
+  --border-color:    #f0d5db;   /* soft border */
+
+  /* Dock */
+  --dock-bg:         rgba(255, 250, 251, 0.85);
+  --dock-border:     rgba(212, 130, 160, 0.2);
+
+  /* scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #f472b6 #fff5f8;
+}
+
+.dark {
+  /* Dark mode: Sophisticated Mauve */
+  --brand-primary:   #c08497;   /* muted pink-mauve */
+  --brand-accent:    #9a7e93;   /* smoky lavender */
+  --brand-soft:      #1a1216;   /* dark mauve-black */
+  --brand-muted:     #2a1d24;   /* deep rose accent */
+  --bg-base:         #0d0b0c;   /* neutral dark */
+  --text-base:       #f2e9ec;   /* blush off-white */
+  --text-muted:      #bca8af;   /* dusty mauve text */
+  --border-color:    #4a363d;   /* muted dark border */
+
+  /* Dock */
+  --dock-bg:         rgba(15, 12, 13, 0.8);
+  --dock-border:     rgba(192, 132, 151, 0.2);
+
+  scrollbar-color: #be185d #0d0008;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    @apply transition-colors duration-300;
+  }
+
+  html {
+    background-color: var(--bg-base);
+    color: var(--text-base);
+  }
+
+  body {
+    @apply font-sans;
+    background-color: var(--bg-base);
+  }
+
+  ::selection {
+    background-color: #f9a8d4;
+    color: #3b0a2a;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  /* Rose gradient subtle background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(212,130,160,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,126,147,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* ── Matrix Mode (keep as-is) ── */
+.matrix-mode body * {
+  color: #0F0 !important;
+  border-color: #0F0 !important;
+  text-shadow: 0 0 5px #0F0;
+  box-shadow: none !important;
+}
+
+.matrix-mode body section,
+.matrix-mode body div:not(.mascot-container),
+.matrix-mode body header,
+.matrix-mode body footer,
+.matrix-mode body nav {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.matrix-mode body {
+  background-color: black !important;
+}
+
+.matrix-mode img {
+  filter: sepia(100%) hue-rotate(90deg) saturate(300%) contrast(150%) brightness(50%) !important;
+}
+
+.matrix-mode .mascot-container {
+  background-color: transparent !important;
+  filter: sepia(100%) hue-rotate(90deg) saturate(500%) contrast(150%) brightness(80%) !important;
+}
